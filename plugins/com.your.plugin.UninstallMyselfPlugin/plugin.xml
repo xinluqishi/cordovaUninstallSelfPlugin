@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--id插件的标识-->
+<plugin id="com.your.plugin.UninstallMyselfPlugin" version="0.0.1"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--插件的名称-->
+    <name>UninstallMyselfPlugin</name>
+	<!--描述信息-->
+    <description>卸载插件</description>
+	<!--js module文件，在这里配置插件中要访问的方法-->
+    <js-module name="UninstallMyselfPlugin" src="www/UninstallMyselfApp.js">
+        <!--注册目标 实际调用时就用以下名字调用-->
+        <clobbers target="window.plugins.UninstallMyselfPlugin"/>
+    </js-module>
+	<!--platform：支持的平台-->
+    <platform name="android">
+    <!--插件的配置信息，build的时候会添加到res/xml/config.xml 文件中-->
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="UninstallMyselfPlugin">
+                <param name="android-package" value="com.your.plugin.UninstallMyselfPlugin"/>
+            </feature>
+        </config-file>
+        <!-- 可以定义自己的一些权限信息，build后会添加到主配置文件中 -->
+		<config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+        </config-file>
+         <source-file src="src/android/UninstallMyselfPlugin.java" target-dir="src/com/your/plugin"/>
+	</platform>
+	
+</plugin>
